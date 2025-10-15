@@ -132,27 +132,54 @@ header { text-align: center; margin-top: 2rem; transition: all 1s ease; }
   }
 
   .paper {
-    padding: 1rem;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    width: 94%;
-  }
+  background: #faf5ff;
+  border-radius: 16px;
+  padding: 1.25rem 1.4rem;
+  width: 92%;
+  max-width: 480px;
+  margin: 1.5rem auto;
+  box-shadow: 0 6px 25px rgba(120, 60, 180, 0.15);
+  line-height: 1.75;
+  font-size: 0.95rem;
+  color: #4b2e83;
+}
 
-  .letter-header,
-  .letter-signature {
-    font-size: 0.9rem !important;
-  }
+.letter-header {
+  text-align: right;
+  margin-right: 10%;
+  margin-bottom: 0.8rem;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #7e22ce;
+  letter-spacing: 0.4px;
+}
 
-  .message {
-    font-size: 0.95rem;
-    padding: 0 0.3rem;
-  }
+.letter-signature {
+  text-align: right;
+  margin-right: 8%;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #6b21a8;
+  font-weight: 500;
+}
 
-  .next-btn {
-    font-size: 0.95rem;
-    padding: 0.6rem 1.1rem;
-    border-radius: 10px;
-  }
+.next-btn {
+  background: linear-gradient(90deg, #a855f7, #c084fc);
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 0.7rem 1.2rem;
+  margin-top: 1.4rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+  transition: all 0.3s ease;
+}
+.next-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(192, 132, 252, 0.6);
+}
+
 
   .gallery img {
     width: 88%;

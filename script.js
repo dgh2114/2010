@@ -186,31 +186,43 @@ function playBackgroundMusic() {
 
 // ========== HIỆN ẢNH ==========
 function showGallery() {
-  gallery.style.display = "block";
-
   if (galleryIndex >= galleryData.length) {
     fadeOutMusic();
     startHeartScene();
     return;
   }
 
+  gallery.style.display = "block";
   const item = galleryData[galleryIndex];
+
+  // Cập nhật ảnh
+  galleryImg.style.pointerEvents = "none";
   galleryImg.style.opacity = 0;
   galleryImg.src = item.src;
   caption.textContent = "";
 
-  gsap.to(galleryImg, { opacity: 1, duration: 1 });
+  // Hiện ảnh nhanh hơn
+  gsap.to(galleryImg, { opacity: 1, duration: 0.6, ease: "power2.out" });
+
+  // Sau 0.3s thì gõ caption
   setTimeout(() => {
     typeText(item.text, caption, () => {
+      // Khi gõ xong caption → cho phép click để chuyển
+      galleryImg.style.pointerEvents = "auto";
       galleryImg.onclick = () => {
-        gsap.to(galleryImg, { opacity: 0, duration: 1, onComplete: () => {
-          galleryIndex++;
-          showGallery();
-        }});
+        gsap.to([galleryImg, caption], {
+          opacity: 0,
+          duration: 0.5,
+          onComplete: () => {
+            galleryIndex++;
+            showGallery();
+          }
+        });
       };
     });
-  }, 400);
+  }, 300);
 }
+
 
 // ========== GIẢM DẦN ÂM LƯỢNG ==========
 function fadeOutMusic() {
