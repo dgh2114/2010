@@ -3,207 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>For You — 20/10 💜</title>
+  <title>Tặng em bé — 20/10 💜</title>
+
+  <!-- Tailwind & GSAP -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at top, #f6e9ff, #d9b3ff 80%);
-      overflow-x: hidden;
-    }
-    .title-font { font-family: 'Playfair Display', serif; }
-    header { text-align: center; margin-top: 2rem; transition: all 1s ease; }
-    .hidden { display: none; }
 
-    /* Login box */
-    .login-box {
-      text-align: center;
-      margin-top: 10%;
-      animation: fadeIn 1.5s ease;
-    }
-    .login-input {
-      padding: 0.6rem 1rem;
-      border: 2px solid #c084fc;
-      border-radius: 10px;
-      outline: none;
-      text-align: center;
-      transition: all 0.3s;
-    }
-    .login-input:focus {
-      box-shadow: 0 0 15px #c084fc;
-    }
-    .login-btn {
-      background: #a855f7;
-      color: white;
-      border-radius: 8px;
-      padding: 0.6rem 1.2rem;
-      margin-top: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .login-btn:hover { transform: scale(1.1); background: #9333ea; }
-
-    /* Thư */
-    .envelope {
-      position: relative;
-      width: 300px;
-      height: 200px;
-      background: linear-gradient(135deg, #d4a1ff, #c8a2c8);
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-      margin: 3rem auto;
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-
-    .flap {
-      position: absolute; top: 0; left: 0; width: 100%; height: 50%;
-      background: linear-gradient(180deg, #f4d9ff, #c8a2c8);
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      border-top-left-radius: 10px; border-top-right-radius: 10px;
-      transform-origin: top;
-    }
-    
-    .letter-header {
-      text-align: right;
-      font-style: italic;
-      color: #7e22ce;
-      margin-bottom: 1rem;
-    }
-
-    .letter-signature {
-      text-align: right;
-      font-weight: 500;
-      color: #6b21a8;
-      margin-top: 1.5rem;
-    }
-
-    .paper {
-      width: 90%;
-      max-width: 700px;
-      background: #faf5ff;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      margin: 3rem auto;
-      opacity: 0;
-      transform: translateY(50px);
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .message {
-      opacity: 0;
-      padding: 2rem;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #4b2e83;
-      white-space: pre-line;
-      background: linear-gradient(180deg, #faf5ff 70%, #efe0ff);
-      border-radius: 10px;
-      width: 90%;
-      text-align: left;
-    }
-
-    .next-btn {
-      display: none;
-      background: linear-gradient(90deg, #a855f7, #c084fc);
-      color: white;
-      border-radius: 12px;
-      padding: 0.8rem 1.6rem;
-      margin: 1.5rem;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
-      transition: 0.3s;
-      font-weight: bold;
-      text-align: center;
-    }
-    .next-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 25px rgba(192, 132, 252, 0.6);
-    }
-
-    .next-btn:hover { transform: scale(1.1); background: #9333ea; }
-
-    /* Ảnh */
-    .gallery { display: none; margin-top: 2rem; text-align: center; }
-    .gallery img {
-      width: 100%; max-width: 600px;
-      border-radius: 16px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-      margin: 0 auto;
-      cursor: pointer;
-      transform: scale(0.95);
-      transition: all 1s ease;
-      filter: brightness(1.05) saturate(1.2);
-    }
-    .gallery img:hover { transform: scale(1.02) rotate(1deg); }
-    .caption {
-      color: #4b2e83;
-      font-size: 1.2rem;
-      margin: 1rem auto;
-      max-width: 600px;
-      min-height: 2.5rem;
-      text-shadow: 0 0 10px rgba(180, 100, 255, 0.3);
-    }
-
-    /* Tim bay */
-    .heart-scene {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: radial-gradient(circle at center, #f3e8f9, #c4a1cf 80%);
-      overflow: hidden;
-      z-index: 50;
-      animation: fadeIn 1.5s ease-in-out forwards;
-    }
-    .heart { position: absolute; color: #ff80bf; font-size: 24px; opacity: 0.8; animation: floatHeart 6s linear infinite; }
-    @keyframes floatHeart { 0% { transform: translateY(100vh) scale(0.8); opacity: 1; } 100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  </style>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body class="min-h-screen flex flex-col items-center justify-start text-center p-6">
 
   <!-- LOGIN SCREEN -->
-  <div id="loginScreen" class="flex flex-col items-center justify-center min-h-screen">
-  <div class="bg-white/50 backdrop-blur-2xl rounded-[2rem] shadow-[0_8px_40px_rgba(160,100,255,0.25)] px-10 py-10 text-center animate-fadeIn border border-white/40">
-    <h1 class="title-font text-3xl mb-4 text-purple-700 font-semibold flex items-center justify-center gap-2 drop-shadow-[0_1px_2px_rgba(128,0,128,0.1)]">
-      💌 Một món quà bí mật <span class="animate-bounce text-lg">💜</span>
-    </h1>
-    <p class="text-purple-500 italic mb-8 text-base leading-relaxed">
-      Chiếc chìa khóa mở ra điều anh dành tặng riêng cho em.
-    </p>
+  <div id="loginScreen" class="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-white px-6">
+    <div class="bg-white/60 backdrop-blur-xl rounded-3xl shadow-[0_8px_40px_rgba(160,100,255,0.25)] border border-white/40 w-full max-w-[400px] p-8 text-center animate-fadeIn">
+      <h1 class="title-font text-2xl sm:text-3xl mb-4 text-purple-700 font-semibold">Một món quà bí mật 💖</h1>
+      <p class="text-purple-500 italic mb-8 text-sm sm:text-base">Chiếc chìa khóa mở ra điều anh dành tặng riêng cho em 💜</p>
 
-    <div class="flex items-center justify-center gap-4">
       <input id="passwordInput" type="password" placeholder="Nhập mật mã 🌸"
-        class="w-64 px-4 py-3 rounded-full border border-purple-200 text-center text-purple-700 bg-white/70 placeholder-purple-300 focus:ring-4 focus:ring-purple-200/70 outline-none transition-all duration-300 shadow-[inset_0_0_8px_rgba(180,100,255,0.1)]">
-      
+        class="w-60 px-4 py-3 rounded-full border border-purple-200 text-center text-purple-700 bg-white/70 placeholder-purple-300 focus:ring-4 focus:ring-purple-200/70 outline-none transition-all duration-300 shadow-[inset_0_0_8px_rgba(180,100,255,0.1)]">
+
       <button id="loginBtn"
-        class="px-7 py-3 rounded-full bg-gradient-to-r from-purple-500 via-pink-400 to-purple-500 text-white font-semibold text-base shadow-[0_4px_20px_rgba(168,85,247,0.4)] hover:scale-110 hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] transition-transform duration-300">
-        💖 Mở quà 💖
+        class="block mx-auto mt-4 px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 via-pink-400 to-purple-500 text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-300">
+        Mở quà
       </button>
+
+      <p id="loginMsg" class="text-red-500 mt-5 h-6 text-sm"></p>
     </div>
-
-    <p id="loginMsg" class="text-red-500 mt-5 h-6 text-sm"></p>
   </div>
-</div>
-
-<style>
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-.animate-fadeIn {
-  animation: fadeIn 1.2s ease-out forwards;
-}
-</style>
-
-
 
   <!-- MAIN CONTENT -->
   <div id="mainContent" class="hidden">
@@ -218,7 +46,7 @@
 
     <div id="paper" class="paper">
       <div id="message" class="message"></div>
-      <button id="nextBtn" class="next-btn">Hihi típ nữa nè :3</button>
+      <button id="nextBtn" class="next-btn">Hihi em bé ấn típ zô đây nhó :3</button>
     </div>
 
     <section id="gallery" class="gallery">
@@ -229,192 +57,7 @@
     <div id="heartScene" class="heart-scene"></div>
   </div>
 
-  <script>
-    const SECRET = "2010";
-    const loginScreen = document.getElementById('loginScreen');
-    const loginBtn = document.getElementById('loginBtn');
-    const passwordInput = document.getElementById('passwordInput');
-    const loginMsg = document.getElementById('loginMsg');
-    const mainContent = document.getElementById('mainContent');
-
-    loginBtn.addEventListener('click', () => {
-      if (passwordInput.value.trim() === SECRET) {
-        gsap.to(loginScreen, { opacity: 0, duration: 0.8, onComplete: () => {
-          loginScreen.classList.add('hidden');
-          mainContent.classList.remove('hidden');
-          gsap.fromTo(mainContent, { opacity: 0 }, { opacity: 1, duration: 1.2 });
-        }});
-      } else {
-        loginMsg.textContent = "Sai mất rồi 😢 Thử lại nhé!";
-        gsap.fromTo(loginScreen, { x: -5 }, { x: 5, repeat: 3, yoyo: true, duration: 0.1 });
-      }
-    });
-  </script>
-
-  <script>
-    const flap = document.getElementById('flap');
-    const envelope = document.getElementById('envelope');
-    const paper = document.getElementById('paper');
-    const message = document.getElementById('message');
-    const nextBtn = document.getElementById('nextBtn');
-    const header = document.getElementById('header');
-    const gallery = document.getElementById('gallery');
-    const galleryImg = document.getElementById('galleryImg');
-    const caption = document.getElementById('caption');
-    const heartScene = document.getElementById('heartScene');
-    let opened = false;
-
-    const galleryData = [
-      { img: 'images/IMG_20220702_125628.jpg', text: 'Hồi mà em mới chỉ nghĩ đến sẽ ăn thịt anh nè' },
-      { img: 'images/IMG20220727233422.jpg', text: 'Sắp ăn thịt thành công :>' },
-      { img: 'images/IMG20220921211810.jpg', text: 'Sắp ăn thịt rùi (hình như đây là tấm đầu tiên từ lúc iu thì phải á)' },
-      { img: 'images/IMG_20221223_122314_417.jpg', text: 'Em luôn là chỗ dựa cho anh :3 (chụi ui anh thích cảm giác được em ôm như này lắm)' },
-      { img: 'images/IMG_20221223_122703_601.jpg', text: 'Zui zẻ cùng nhaoooo' },
-      { img: 'images/IMG_20250502_140000292.jpg', text: 'Anh cũng là chỗ dựa cho em nứaaa 💪' },
-      { img: 'images/IMG_20221218_131511_701.jpg', text: 'Đángggg iuuuu íii' },
-      { img: 'images/IMG_20250716_155520.jpg', text: 'hẹ hẹ hẹ' },
-      { img: 'images/IMG20221218195307.jpg', text: 'Em luôn ở bên dõi theo anh (kể cả lúc anh đang ẻ 💩)' },
-      { img: 'images/Locket_1752581000782_75.jpg', text: 'Một chút vitamin xinh gái 😍' },
-      { img: 'images/IMG_1758812697692_1758812716666.jpg', text: 'Một chút vitamin đáng yêu 🥰' },
-      { img: 'images/Locket_1754972493450_46.jpg', text: 'Làm "mặt xấu"' },
-      { img: 'images/IMG_1745602237857_1745602609248.jpg', text: 'Người đẹp bên phải, quái vật bên trái 😊' },
-      { img: 'images/IMG_1756131903159_1756380896800.jpg', text: 'i chơiiii' },
-      { img: 'images/IMG_1756131902868_1756137831540.jpg', text: 'Chụp ảnh' },
-      { img: 'images/IMG_1745602237544_1745602604173.jpg', text: 'Lại i chơi' },
-      { img: 'images/IMG_1746258545743_1746270440119.jpg', text: 'Lại chụp ảnh 😆' },
-      { img: 'images/IMG_1744520107535_1744520303586.jpg', text: 'Anh tổng tài bá đạo và cô thư kí xinh đẹp 🤭' },
-      { img: 'images/IMG_1744520481775_1744520486142.jpg', text: 'Ú òaaa 😍😍😍' }
-    ];
-
-    const typeSound = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_16b6a833c4.mp3?filename=typing-1-100281.mp3');
-    typeSound.volume = 0.25;
-
-    function showTypingEffect(text, target, callback) {
-      let i = 0;
-      const speed = 35;
-      target.innerHTML = '';
-      function typeChar() {
-        if (i < text.length) {
-          target.innerHTML += text.charAt(i);
-          if (text.charAt(i) !== ' ' && text.charAt(i) !== '\n') {
-            typeSound.currentTime = 0;
-            typeSound.play();
-          }
-          i++;
-          setTimeout(typeChar, speed);
-        } else if (callback) callback();
-      }
-      typeChar();
-    }
-
-envelope.addEventListener('click', () => {
-  if (opened) return;
-  opened = true;
-
-  // Đổi tiêu đề khi mở thư
-  gsap.to(header, {
-    y: -30, opacity: 0, duration: 0.6, ease: 'power2.inOut',
-    onComplete: () => {
-      header.innerHTML = `
-        <h1 class='title-font text-3xl text-purple-700 animate-bounce'>
-          🌸 Gửi đến em những lời iu thưn
-        </h1>
-        <p class='text-purple-500 italic'>
-          Một chút lời chúc nho nhỏ từ tận đáy lòng...
-        </p>`;
-      gsap.fromTo(header, { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'back.out(1.7)' });
-    }
-  });
-
-  // Mở nắp + nhún phong bì
-  gsap.to(flap, { rotateX: 180, duration: 1.2, ease: 'elastic.out(1,0.5)' });
-  gsap.to(envelope, { scale: 1.1, duration: 0.6, yoyo: true, repeat: 1 });
-
-  // Hiện giấy & nội dung
-  gsap.to(paper, {
-    opacity: 1, y: 0, duration: 1.4, delay: 1.2, ease: 'power3.out',
-    onStart: () => {
-      gsap.to(envelope, { opacity: 0, duration: 1, delay: 0.6, onComplete: () => (envelope.style.display = 'none') });
-    },
-    onComplete: () => {
-      gsap.to(message, { opacity: 1, delay: 0.5, duration: 1 });
-
-      // Dòng đầu thư (cố định)
-      const dateLine = `<div class='letter-header'>Hà Nội, ngày 20 tháng 10 năm 2025</div>`;
-
-      // Nội dung thư (hiệu ứng gõ)
-      const letterBody = `Gửi em yêu dấu 💜,\n
-Nhân dịp hôm qua là ngày 19 và ngày mai là ngày 21 tháng 10.\nAnh có một món quà nho nhỏ muốn dành tặng đến người anh thương 😊.\nMón quà này nhỏ và cũng đơn giản thui nhưng anh hi vọng là em bé sẽ thích nó ạ 😘\n
-Đầu tiên thì anh xin chúc cho người yêu của anh có 1 ngày "ở giữa" thật may mắn nheee 😍.\nKhoảng thời gian qua cũng đã vất vả nhiều cho em bé của anh rùi, anh hi vọng từ nay đến mãi về sau
-sẽ được cùng em có thật nhiều niềm vui và hạnh phúc 🥰.\n
-Anh rất trân trọng và cảm ơn em vì những điều tuyệt vời mà em đã dành cho anh 💓.\n`;
-
-      const signature = `<div class='letter-signature'>__Anh iuuuu của em 💗__</div>`;
-
-      // Tránh bị xóa mất dateLine khi gõ: tạo vùng riêng
-      message.innerHTML = dateLine + "<div id='typingArea'></div>";
-      const typingArea = document.getElementById('typingArea');
-
-      showTypingEffect(letterBody, typingArea, () => {
-        typingArea.innerHTML += signature;
-        nextBtn.style.display = 'inline-block';
-        gsap.fromTo(nextBtn, { opacity: 0, y: 10, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'elastic.out(1,0.5)' });
-      });
-    }
-  });
-});
-
-
-    let galleryIndex = 0;
-
-    nextBtn.addEventListener('click', () => {
-      gsap.to(paper, { opacity: 0, y: -50, scale: 0.95, duration: 0.8, ease: 'power2.inOut', onComplete: () => {
-        paper.style.display = 'none';
-        header.innerHTML = `<h1 class='title-font text-3xl text-purple-700 animate-pulse'>💞 Những kỷ niệm nhỏ</h1>`;
-        gallery.style.display = 'block';
-        showGallery();
-      }});
-    });
-
-    function showGallery() {
-      if (galleryIndex >= galleryData.length) {
-        startHeartScene();
-        return;
-      }
-      const item = galleryData[galleryIndex];
-      galleryImg.src = item.img;
-      caption.textContent = '';
-      caption.style.textAlign = galleryIndex % 2 === 0 ? 'left' : 'right';
-      gsap.fromTo(galleryImg, { opacity: 0, scale: 0.9, rotationY: 20 }, { opacity: 1, scale: 1, rotationY: 0, duration: 1.2, ease: 'back.out(1.7)' });
-      showTypingEffect(item.text, caption, () => {
-        galleryImg.onclick = () => {
-          galleryImg.onclick = null;
-          gsap.to(galleryImg, { opacity: 0, scale: 0.9, rotationY: -20, duration: 1, ease: 'power2.inOut', onComplete: () => {
-            galleryIndex++;
-            showGallery();
-          }});
-        };
-      });
-    }
-
-    function startHeartScene() {
-      gallery.style.display = 'none';
-      heartScene.style.display = 'block';
-      const audio = new Audio('music/romantic.mp3');
-      audio.volume = 0.7;
-      audio.play();
-      gsap.fromTo(heartScene, { opacity: 0 }, { opacity: 1, duration: 2 });
-      setInterval(() => {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.textContent = Math.random() > 0.5 ? '❤' : '💜';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.fontSize = 16 + Math.random() * 30 + 'px';
-        heart.style.animationDuration = 4 + Math.random() * 3 + 's';
-        heartScene.appendChild(heart);
-        setTimeout(() => heart.remove(), 7000);
-      }, 180);
-    }
-  </script>
+  <!-- Script -->
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,171 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at 50% 40%, #f8f0ff 0%, #e9d4ff 40%, #d5b6ff 100%);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.title-font { font-family: 'Playfair Display', serif; }
+header { text-align: center; margin-top: 2rem; transition: all 1s ease; }
+.hidden { display: none; }
+
+.envelope {
+  position: relative;
+  width: min(80vw, 320px);
+  height: calc(min(80vw, 320px) * 0.66);
+  background: linear-gradient(135deg, #d4a1ff, #c8a2c8);
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  margin: 2rem auto;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.flap {
+  position: absolute; top: 0; left: 0; width: 100%; height: 50%;
+  background: linear-gradient(180deg, #f4d9ff, #c8a2c8);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+}
+
+.paper {
+  width: 92%;
+  max-width: 600px;
+  background: #faf5ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  opacity: 0;
+  transform: translateY(50px);
+  text-align: left;
+  padding: 1.2rem;
+}
+
+.message {
+  opacity: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #4b2e83;
+  white-space: pre-line;
+}
+
+.next-btn {
+  display: none;
+  background: linear-gradient(90deg, #a855f7, #c084fc);
+  color: white;
+  border-radius: 12px;
+  padding: 0.7rem 1.4rem;
+  margin: 1rem auto;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.gallery {
+  display: none;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.gallery img {
+  width: 90%;
+  max-width: 500px;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  cursor: pointer;
+  transform: scale(0.95);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.caption {
+  color: #4b2e83;
+  font-size: 1.1rem;
+  margin: 1rem auto;
+  max-width: 90%;
+}
+
+.heart-scene {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at center, #f3e8f9, #c4a1cf 80%);
+  overflow: hidden;
+  z-index: 50;
+}
+
+.heart {
+  position: absolute;
+  color: #ff80bf;
+  font-size: 24px;
+  opacity: 0.8;
+  animation: floatHeart 6s linear infinite;
+}
+
+@keyframes floatHeart {
+  0% { transform: translateY(100vh) scale(0.8); opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1.2s ease-out forwards;
+}
+
+/* 📱 Tối ưu cho iPhone 13 (390 x 844) */
+@media screen and (max-width: 430px) {
+  body {
+    font-size: 16px;
+    padding: 0.75rem;
+  }
+
+  .paper {
+    padding: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    width: 94%;
+  }
+
+  .letter-header,
+  .letter-signature {
+    font-size: 0.9rem !important;
+  }
+
+  .message {
+    font-size: 0.95rem;
+    padding: 0 0.3rem;
+  }
+
+  .next-btn {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 10px;
+  }
+
+  .gallery img {
+    width: 88%;
+    border-radius: 14px;
+  }
+
+  .caption {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0 0.5rem;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+  }
+}
