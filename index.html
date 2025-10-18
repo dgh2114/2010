@@ -8,6 +8,7 @@
   <!-- Tailwind & GSAP -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
@@ -54,6 +55,53 @@
       <div id="caption" class="caption"></div>
     </section>
 
+<!-- QUESTION FORM -->
+<section id="questionForm" class="hidden max-w-md mx-auto text-left bg-white/60 backdrop-blur-lg p-6 rounded-2xl shadow-lg mt-6">
+  <h2 class="text-purple-700 font-semibold text-2xl mb-4 text-center">💌 Một chút tò mò của anh 💜</h2>
+  
+  <form id="loveForm" class="space-y-4">
+    <div>
+      <label class="block text-purple-700 font-medium mb-1">1️⃣ Em bé có thấy vui và bất ngờ với món quà nho nhỏ này của anh không ?</label>
+      <textarea name="q1" class="w-full border border-purple-200 rounded-lg p-2 focus:ring-2 focus:ring-purple-300" required></textarea>
+    </div>
+
+    <div>
+      <label class="block text-purple-700 font-medium mb-1">2️⃣ Em đang cảm thấy như thế nào ạ ?</label>
+      <textarea name="q2" class="w-full border border-purple-200 rounded-lg p-2 focus:ring-2 focus:ring-purple-300" required></textarea>
+    </div>
+
+    <div>
+      <label class="block text-purple-700 font-medium mb-1">3️⃣ Em có muốn nhắn gửi đến anh điều gì khum ạ ?</label>
+      <textarea name="q3" class="w-full border border-purple-200 rounded-lg p-2 focus:ring-2 focus:ring-purple-300" required></textarea>
+    </div>
+
+    <div>
+      <label class="block text-purple-700 font-medium mb-1">4️⃣ Khoảnh khắc nào bên anh làm em nhớ nhất 💭?</label>
+      <textarea name="q4" class="w-full border border-purple-200 rounded-lg p-2 focus:ring-2 focus:ring-purple-300" required></textarea>
+    </div>
+
+    <div>
+      <label class="block text-purple-700 font-medium mb-1">5️⃣ Nếu anh và em được ở bên nhau ngay bây giờ, em muốn làm gì nè 😚?</label>
+      <textarea name="q5" class="w-full border border-purple-200 rounded-lg p-2 focus:ring-2 focus:ring-purple-300" required></textarea>
+    </div>
+
+    <div>
+      <label class="block text-purple-700 font-medium mb-1">6️⃣ Anh thấy món quà này cũng hơi đơn giản nhưng cũng hơi đặc biệt chút tại nó không phải là hiện vật í, anh làm cũng không được đẹp với xịn lắm. Không biết em thấy như thế nào nhưng anh hi vọng em sẽ thích nó ạ 💕</label>
+      <textarea name="q6" class="w-full border border-purple-200 rounded-lg p-2 focus:ring-2 focus:ring-purple-300" required></textarea>
+    </div>
+
+    <div>
+      <label class="block text-purple-700 font-medium mb-1">7️⃣ Em bé có yêuuu anh khônggg 💖?</label>
+      <textarea name="q7" class="w-full border border-purple-200 rounded-lg p-2 focus:ring-2 focus:ring-purple-300" required></textarea>
+    </div>
+
+    <button type="submit"
+      class="w-full mt-4 bg-gradient-to-r from-purple-500 via-pink-400 to-purple-500 text-white font-semibold rounded-full py-3 hover:scale-105 transition-transform">
+      Gửi cho anh 💌
+    </button>
+  </form>
+</section>
+    <p id="thankMsg" class="hidden text-center text-purple-700 font-semibold mt-6 text-lg"></p>
     <div id="heartScene" class="heart-scene"></div>
   </div>
 
