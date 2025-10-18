@@ -265,6 +265,7 @@ document.getElementById("loveForm").addEventListener("submit", (e) => {
                 duration: 0.8,
                 onComplete: () => {
                   thankMsg.innerHTML = `
+                    Đến đây là hết rùiiii ^.^ <br>
                     💌 Cảm ơn em bé lần nữa nha 💕<br>
                     Anh thương em nhiều lắm 💜
                   `;
